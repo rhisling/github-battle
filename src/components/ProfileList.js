@@ -1,18 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   FaCompass,
   FaBriefcase,
   FaUsers,
   FaUserFriends,
-  FaUser
-} from "react-icons/fa";
+  FaUser,
+} from 'react-icons/fa';
+import Tooltip from './Tooltip';
 
-ProfileList.propTypes = {
-    profile: PropTypes.object.isRequired
-};
-
-function ProfileList({ profile }) {
+const ProfileList = ({ profile }) => {
   return (
     <ul className="card-list">
       <li>
@@ -20,10 +17,12 @@ function ProfileList({ profile }) {
         {profile.name}
       </li>
       {profile.location && (
-        <li>
-          <FaCompass color="rgb(144,115,255)" size={22} />
-          {profile.location}
-        </li>
+        <Tooltip text="User's location">
+          <li>
+            <FaCompass color="rgb(144,115,255)" size={22} />
+            {profile.location}
+          </li>
+        </Tooltip>
       )}
       {profile.company && (
         <li>
@@ -41,6 +40,9 @@ function ProfileList({ profile }) {
       </li>
     </ul>
   );
-}
+};
 
+ProfileList.propTypes = {
+  profile: PropTypes.object.isRequired,
+};
 export default ProfileList;
