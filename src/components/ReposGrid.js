@@ -4,9 +4,10 @@ import {
   FaUser,
   FaStar,
   FaCodeBranch,
-  FaExclamationTriangle
+  FaExclamationTriangle,
 } from 'react-icons/fa';
 import './RepoGrid.css';
+import Tooltip from './Tooltip';
 
 const ReposGrid = ({ repos }) => (
   <ul className="grid space-around">
@@ -17,7 +18,7 @@ const ReposGrid = ({ repos }) => (
         html_url,
         stargazers_count,
         forks,
-        open_issues
+        open_issues,
       } = repo;
       const { login, avatar_url } = owner;
 
@@ -27,7 +28,8 @@ const ReposGrid = ({ repos }) => (
           <img
             className="avatar"
             src={avatar_url}
-            alt={`Avatar for ${login}`}></img>
+            alt={`Avatar for ${login}`}
+          />
           <h2 className="center-text">
             <a className="link" href={html_url}>
               {login}
@@ -35,8 +37,10 @@ const ReposGrid = ({ repos }) => (
           </h2>
           <ul className="card-list">
             <li>
-              <FaUser color="rgb(255,191,116)" size={22} />
-              <a href={`https://github.com/${login}`}>{login}</a>
+              <Tooltip text="Github Username">
+                <FaUser color="rgb(255,191,116)" size={22} />
+                <a href={`https://github.com/${login}`}>{login}</a>
+              </Tooltip>
             </li>
             <li>
               <FaCodeBranch color="rgb(255,215,0)" size={22} />
@@ -58,7 +62,7 @@ const ReposGrid = ({ repos }) => (
 );
 
 ReposGrid.propType = {
-  repos: PropTypes.array.isRequired
+  repos: PropTypes.array.isRequired,
 };
 
 export default ReposGrid;
