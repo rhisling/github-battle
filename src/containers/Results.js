@@ -1,38 +1,19 @@
-import React from "react";
-import { battle } from "../utils/api";
-import { css } from "emotion";
-import Card from "../components/Card";
-import ProfileList from "../components/ProfileList";
-import PropTypes from "prop-types";
+import React from 'react';
+import { battle } from '../utils/api';
+import { css } from 'emotion';
+import Card from '../components/Card';
+import ProfileList from '../components/ProfileList';
+import PropTypes from 'prop-types';
+import Loading from '../components/Loading';
 
-const styles = {
-  container: {
-    position: "relative",
-    display: "flex"
-  },
-  tooltip: {
-    boxSizing: "border-box",
-    position: "absolute",
-    width: "160px",
-    bottom: "100%",
-    left: "50%",
-    marginLeft: "-80px",
-    borderRadius: "3px",
-    backgroundColor: "hsla(0, 0%, 20%, 0.9)",
-    padding: "7px",
-    marginBottom: "5px",
-    color: "#fff",
-    textAlign: "center",
-    fontSize: "14px"
-  }
-};
+
 
 class Results extends React.Component {
   state = {
     winner: null,
     loser: null,
     error: null,
-    loading: true
+    loading: true,
   };
 
   componentDidMount() {
@@ -43,13 +24,13 @@ class Results extends React.Component {
           winner: players[0],
           loser: players[1],
           error: null,
-          loading: false
-        })
+          loading: false,
+        }),
       )
       .catch(({ message }) => {
         this.setState({
           error: message,
-          loading: false
+          loading: false,
         });
       });
   }
@@ -57,7 +38,7 @@ class Results extends React.Component {
   render() {
     const { winner, loser, error, loading } = this.state;
     if (loading) {
-      return <p>Loading</p>;
+      return <Loading speed={300} text='Loading'/>;
     }
     if (error) {
       return (
@@ -76,7 +57,7 @@ class Results extends React.Component {
       <>
         <div className="grid space-around container-sm">
           <Card
-            header={winner.score === loser.score ? "Tie" : "Winner"}
+            header={winner.score === loser.score ? 'Tie' : 'Winner'}
             subheader={`Score: ${winner.score.toLocaleString()}`}
             avatar={winner.profile.avatar_url}
             href={winner.profile.html_url}
@@ -86,7 +67,7 @@ class Results extends React.Component {
           </Card>
 
           <Card
-            header={winner.score === loser.score ? "Tie" : "Loser"}
+            header={winner.score === loser.score ? 'Tie' : 'Loser'}
             subheader={`Score: ${loser.score.toLocaleString()}`}
             avatar={loser.profile.avatar_url}
             name={loser.profile.login}
@@ -106,7 +87,7 @@ class Results extends React.Component {
 Results.propTypes = {
   playerOne: PropTypes.string.isRequired,
   playerTwo: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired
+  onReset: PropTypes.func.isRequired,
 };
 
 export default Results;
