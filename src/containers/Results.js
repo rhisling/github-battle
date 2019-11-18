@@ -3,7 +3,6 @@ import { battle } from '../utils/api';
 import { css } from 'emotion';
 import Card from '../components/Card';
 import ProfileList from '../components/ProfileList';
-import PropTypes from 'prop-types';
 import Loading from '../components/Loading';
 import queryString from 'query-string';
 import { Link } from '@reach/router';
