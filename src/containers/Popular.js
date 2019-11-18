@@ -9,8 +9,6 @@ const Popular = () => {
   const [error] = useState(null);
 
   useEffect(() => {
-    console.log('in Use effect');
-    console.log(JSON.stringify(repos));
     async function fetchPopularRepos(selectedLanguage) {
       const endpoint = window.encodeURI(
         `https://api.github.com/search/repositories?q=stars:>1+language:${selectedLanguage}&sort=stars&order=desc&type=Repositories`,
