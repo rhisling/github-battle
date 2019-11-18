@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 export default function withHover(Component, propName = 'hovering') {
   return props => {
-    console.log(props);
     const [state, setState] = useState({
       hovering: false,
     });
