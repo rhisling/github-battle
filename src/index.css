@@ -55,3 +55,9 @@ li {
 .nav li {
   margin-right: 10px;
 }
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
