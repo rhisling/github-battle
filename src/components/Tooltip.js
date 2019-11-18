@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withHover from './withHover';
 import Hover from './Hover';
 
 const styles = {
@@ -40,7 +39,6 @@ function Tooltip({ text, children, hover }) {
 
 Tooltip.propTypes = {
   text: PropTypes.string.isRequired,
-  hover: PropTypes.bool.isRequired,
 };
 
 export default Tooltip;
