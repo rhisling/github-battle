@@ -1,45 +1,30 @@
-import React from "react";
-import Instruction from "../components/Instruction";
-import PlayerInput from "../components/PlayerInput";
-import "./Battle.css";
-import PlayerPreview from "../components/PlayerPreview";
-import Results from "./Results";
+import React from 'react';
+import Instruction from '../components/Instruction';
+import PlayerInput from '../components/PlayerInput';
+import './Battle.css';
+import PlayerPreview from '../components/PlayerPreview';
+import { Link } from '@reach/router';
 
 class Battle extends React.Component {
   state = {
     playerOne: null,
     playerTwo: null,
-    battle: false
+    battle: false,
   };
 
   handleSubmit = (id, player) => {
     this.setState({
-      [id]: player
+      [id]: player,
     });
   };
 
   handleReset = id => {
     this.setState({
-      [id]: null
+      [id]: null,
     });
   };
   render() {
-    const { playerOne, playerTwo, battle } = this.state;
-    if (battle) {
-      return (
-        <Results
-          playerOne={playerOne}
-          playerTwo={playerTwo}
-          onReset={() =>
-            this.setState({
-              playerOne: null,
-              playerTwo: null,
-              battle: false
-            })
-          }
-        />
-      );
-    }
+    const { playerOne, playerTwo } = this.state;
     return (
       <>
         <Instruction />
@@ -49,35 +34,35 @@ class Battle extends React.Component {
             {playerOne === null ? (
               <PlayerInput
                 label="Player One"
-                onSubmit={player => this.handleSubmit("playerOne", player)}
+                onSubmit={player => this.handleSubmit('playerOne', player)}
               />
             ) : (
               <PlayerPreview
                 username={playerOne}
                 label="Player One"
-                onReset={() => this.handleReset("playerOne")}
+                onReset={() => this.handleReset('playerOne')}
               />
             )}
             {playerTwo === null ? (
               <PlayerInput
                 label="Player Two"
-                onSubmit={player => this.handleSubmit("playerTwo", player)}
+                onSubmit={player => this.handleSubmit('playerTwo', player)}
               />
             ) : (
               <PlayerPreview
                 username={playerTwo}
                 label="Player Two"
-                onReset={() => this.handleReset("playerTwo")}
+                onReset={() => this.handleReset('playerTwo')}
               />
             )}
           </div>
           {playerOne && playerTwo && (
-            <button
+            <Link
               className="btn btn-dark btn-space"
-              onClick={() => this.setState({ battle: true })}
+              to={`/battle/results?playerOne=${playerOne}&playerTwo=${playerTwo}`}
             >
               Battle
-            </button>
+            </Link>
           )}
         </div>
       </>

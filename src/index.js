@@ -6,6 +6,7 @@ import Battle from './containers/Battle';
 import { ThemeProvider } from './contexts/Theme';
 import Nav from './components/Nav';
 import { Router } from '@reach/router';
+import Results from './containers/Results';
 
 const App = () => {
   const [theme, toggleTheme] = useState('light');
@@ -18,6 +19,7 @@ const App = () => {
             <Router>
               <Popular path="/" />
               <Battle path="/battle" />
+              <Results path="/battle/results" />
             </Router>
           </div>
         </div>
